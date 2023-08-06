@@ -78,9 +78,9 @@ string caesar_cipher(string plaintext, int shift)
 
     for (int i = 0; i < strlen(ciphertext); i++)
     {
-        // for upper case letters, we need to first 'normalize' them since A starts at 65, NOT 0 as we mistakenly thought
+        // for upper case letters, we need to first 'normalize' them to 0 since A starts at 65, NOT 0 as we mistakenly thought
         if (isupper(ciphertext[i]))
-            ciphertext[i] = (ciphertext[i] - 'A' + shift) % 26 + 'A';
+            ciphertext[i] = (ciphertext[i] - 'A' + shift) % 26 + 'A'; // after adding the shift and modding 26 to curve around, we add 'A' to reverse-normalize back to it's ASCII value
         // similarly, for lower case letters, we need to 'normalize' them', since a starts at 97 and not 0
         // however, we need to use an else if since it's also possible that non letter valid characters are present. it's not binary. ex: '!', '100'
         else if (islower(ciphertext[i]))
